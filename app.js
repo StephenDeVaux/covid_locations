@@ -1,8 +1,24 @@
-require('./src/db/mongoose') //The purpose of this is to ensure that the file runs and that Mongoose then connects to the database
+const express = require('express')
+require('./src/db/mongoose') 
 const ProcessNewCasesByLocation = require('./src/functions/processNewCasesByLocation')
+var CronJob = require('cron').CronJob
+const getCasesRouter = require('./src/routers/getCases')
+const port = process.env.PORT 
 
-ProcessNewCasesByLocation('https://interactive.guim.co.uk/covidfeeds/victoria.json', 'VIC')
-ProcessNewCasesByLocation('https://interactive.guim.co.uk/covidfeeds/nsw.json', 'NSW')
+const app = express()
+
+app.listen(port, () => {
+    console.log('Server is up on port ' + port)
+})
+
+app.use(express.json())
+app.use(getCasesRouter)
+
+// var job = new CronJob('00 00 06 * * *', function () {
+//     ProcessNewCasesByLocation('https://interactive.guim.co.uk/covidfeeds/victoria.json', 'VIC')
+//     ProcessNewCasesByLocation('https://interactive.guim.co.uk/covidfeeds/nsw.json', 'NSW')
+// }, null, true, 'Australia/Victoria');
+// job.start();
 
 console.log('End')
 
