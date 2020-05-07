@@ -19,6 +19,3 @@ var job = new CronJob('00 30 06 * * *', function () {
     ProcessNewCasesByLocation('https://interactive.guim.co.uk/covidfeeds/nsw.json', 'NSW')
 }, null, true, 'Australia/Victoria');
 job.start();
-
-
-
