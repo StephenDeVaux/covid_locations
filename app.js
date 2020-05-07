@@ -14,8 +14,11 @@ app.listen(port, () => {
 app.use(express.json())
 app.use(getCasesRouter)
 
-var job = new CronJob('00 30 06 * * *', function () {
     ProcessNewCasesByLocation('https://interactive.guim.co.uk/covidfeeds/victoria.json', 'VIC')
     ProcessNewCasesByLocation('https://interactive.guim.co.uk/covidfeeds/nsw.json', 'NSW')
-}, null, true, 'Australia/Victoria');
-job.start();
+
+// var job = new CronJob('00 30 06 * * *', function () {
+//     ProcessNewCasesByLocation('https://interactive.guim.co.uk/covidfeeds/victoria.json', 'VIC')
+//     ProcessNewCasesByLocation('https://interactive.guim.co.uk/covidfeeds/nsw.json', 'NSW')
+// }, null, true, 'Australia/Victoria');
+// job.start();
