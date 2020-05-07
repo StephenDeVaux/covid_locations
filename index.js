@@ -5,7 +5,7 @@ var CronJob = require('cron').CronJob
 const getCasesRouter = require('./src/routers/getCases')
 
 const app = express()
-const port = process.env.PORT 
+const port = 3000 //npmprocess.env.PORT 
 
 app.use(express.json())
 app.use(getCasesRouter)
