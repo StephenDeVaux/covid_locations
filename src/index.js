@@ -14,11 +14,8 @@ app.listen(port, () => {
     console.log('Server is up on port ' + port)
 })
 
+var job = new CronJob('00 34 11 * * *', function () {
     ProcessNewCasesByLocation('https://interactive.guim.co.uk/covidfeeds/victoria.json', 'VIC')
     ProcessNewCasesByLocation('https://interactive.guim.co.uk/covidfeeds/nsw.json', 'NSW')
-
-// var job = new CronJob('00 30 06 * * *', function () {
-//     ProcessNewCasesByLocation('https://interactive.guim.co.uk/covidfeeds/victoria.json', 'VIC')
-//     ProcessNewCasesByLocation('https://interactive.guim.co.uk/covidfeeds/nsw.json', 'NSW')
-// }, null, true, 'Australia/Victoria');
-// job.start();
+}, null, true, 'Australia/Victoria');
+job.start();
