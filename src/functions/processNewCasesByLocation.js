@@ -9,7 +9,7 @@ const ProcessNewCasesByLocation = async (url, state) => {
 
     const todaysDataRaw = await FetchInfoFromUrl(url)
     if (state == 'NSW') {
-        todaysData = await parseCountsToNumbers(todaysDataRaw)
+        todaysData = await formatNSWData(todaysDataRaw)
     }
     else {
         todaysData = todaysDataRaw
@@ -51,12 +51,10 @@ const ProcessNewCasesByLocation = async (url, state) => {
     totalCases = checkTotalCasesByState(todaysData)
     totalIncreasedCases = checkTotalCasesByState(increaseData)
 
-
-
     todaysDataModel = new DailyDataAll({
         date: new Date(),
         state,
-        totalCases, 
+        totalCases,
         data: todaysData
     })
 
@@ -69,6 +67,8 @@ const ProcessNewCasesByLocation = async (url, state) => {
 
     todaysDataModel.save()
     inCreaseDataModel.save()
+
+    return increaseData
 }
 
 const checkTotalCasesByState = (data) => {
@@ -79,7 +79,7 @@ const checkTotalCasesByState = (data) => {
     return totalCases
 }
 
-const parseCountsToNumbers = (data) => {
+const formatNSWData = (data) => {
     var newData = []
     for (const place of data) {
         var newPlace = null
@@ -97,7 +97,16 @@ const parseCountsToNumbers = (data) => {
         }
         newData.push(newPlace)
     }
+
+    //Filter out totals row at bottom of NSW data
+    lengthArray = newData.length
+    newData.length = lengthArray - 1
+
     return newData
 }
 
-module.exports = ProcessNewCasesByLocation
+module.exports =
+{
+    ProcessNewCasesByLocation,
+    checkTotalCasesByState
+}
