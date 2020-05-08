@@ -1,8 +1,7 @@
 const mongoose = require('mongoose')
 
 //This url is basically the same as the one setup for mongodb
-// mongoose.connect(process.env.MONGODB_URL, {
-mongoose.connect('mongodb://127.0.0.1:27017/covidLocations', {
+mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,

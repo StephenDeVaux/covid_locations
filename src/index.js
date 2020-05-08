@@ -1,11 +1,11 @@
 const express = require('express')
-require('./src/db/mongoose') 
-const ProcessNewCasesByLocation = require('./src/functions/processNewCasesByLocation')
+require('./db/mongoose') 
+const ProcessNewCasesByLocation = require('./functions/processNewCasesByLocation')
 var CronJob = require('cron').CronJob
-const getCasesRouter = require('./src/routers/getCases')
+const getCasesRouter = require('./routers/getCases')
 
 const app = express()
-const port = 3000 //npmprocess.env.PORT 
+const port = process.env.PORT 
 
 app.use(express.json())
 app.use(getCasesRouter)
