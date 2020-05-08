@@ -15,7 +15,7 @@ app.listen(port, () => {
     console.log('Server is up on port ' + port)
 })
 
-var job = new CronJob('00 45 12 * * *', function () {
+var job = new CronJob('00 00 07 * * *', function () {
     main()
 }, null, true, 'Australia/Victoria');
 job.start();
