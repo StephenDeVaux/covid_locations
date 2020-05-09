@@ -29,13 +29,13 @@ const main = async () => {
     const totalNewVICCases = checkTotalCasesByState(newVICCases)
     const totalNewNSWCases = checkTotalCasesByState(newNSWCases)
 
-    var msg = `Daily corona news! \n \nNew Cases in VIC - ${totalNewVICCases} \n`
+    var msg = `Daily corona news! \n \nNew Cases in VIC = ${totalNewVICCases} \n`
     for (const place of newVICCases) {
-        msg = msg + `- ${place.place} -> ${place.count} \n`
+        msg = msg + `- ${place.place} = ${place.count} \n`
     }
-    msg = msg + `\nNew Cases in NSW - ${totalNewNSWCases} \n`
+    msg = msg + `\nNew Cases in NSW = ${totalNewNSWCases} \n`
     for (const place of newNSWCases) {
-        msg = msg + `- ${place.place} -> ${place.count} \n`
+        msg = msg + `- ${place.place} = ${place.count} \n`
     }
     sendTelegramAlarmBot(msg, process.env.TEST_TELEGRAM_USERID)
 }
