@@ -15,16 +15,10 @@ app.listen(port, () => {
     console.log('Server is up on port ' + port)
 })
 
-
-
-
-
 var job = new CronJob('00 00 06 * * *', function () {
     main()
 }, null, true, 'Australia/Victoria');
 job.start();
-
-
 
 const main = async () => {
     const newVICCases = await ProcessNewCasesByLocation('https://interactive.guim.co.uk/covidfeeds/victoria.json', 'VIC')
@@ -41,8 +35,5 @@ const main = async () => {
     for (const place of newNSWCases) {
         msg = msg + `- ${place.place} = ${place.count} \n`
     }
-    // sendTelegramAlarmBot(msg, process.env.TEST_TELEGRAM_USERID)
+    sendTelegramAlarmBot(msg, process.env.TEST_TELEGRAM_USERID)
 }
-
-main()
-
