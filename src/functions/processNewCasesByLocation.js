@@ -86,7 +86,7 @@ const formatNSWData = (data) => {
         if (place.count == '1-4') {
             newPlace = {
                 place: place.place,
-                count: 2
+                count: 4
             }
         }
         else {
