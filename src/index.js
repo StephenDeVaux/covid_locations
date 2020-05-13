@@ -16,7 +16,7 @@ app.listen(port, () => {
 })
 
 
-main()
+
 
 
 var job = new CronJob('00 00 06 * * *', function () {
@@ -44,3 +44,4 @@ const main = async () => {
     // sendTelegramAlarmBot(msg, process.env.TEST_TELEGRAM_USERID)
 }
 
+main()
